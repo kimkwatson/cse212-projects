@@ -13,7 +13,21 @@ public static class Arrays
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
 
-        return []; // replace this return statement with your own
+        // Create an array
+        // Use a for loop to iterate through the array length
+        // Establish an index variable in for loop for counting iterations
+        // Calculate the next multiple in array by multiplying index (+1 to offset 0) by 'number'
+        // Add the new multiple to the array by assigning it to the current index
+        // Return the created array
+
+        double[] multiples = new double[length];
+
+        for (int i = 0; i < length; i++)
+        {
+           multiples[i] = number * (i + 1);
+        }
+
+        return multiples; // replace this return statement with your own
     }
 
     /// <summary>
