@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 public static class Arrays
 {
     /// <summary>
@@ -45,6 +47,12 @@ public static class Arrays
         // be implemented by another person.
 
         // Remove the last values from the list up to 'amount'
-        // Insert those values at the beginning of the list
+        // Put the removed values into a new list
+        // Insert those values (as a list) at the beginning of the list
+
+        List<int> shifted = new List<int>(data.GetRange(data.Count-amount, amount));
+        Debug.WriteLine(shifted);
+        data.InsertRange(0, shifted);
+        Debug.WriteLine(data);
     }
 }
