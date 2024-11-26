@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json;
 
 public static class SetsAndMaps
@@ -42,6 +43,7 @@ public static class SetsAndMaps
             seen.Add(word);
             seen.Add(reversed);
         }
+        
         return pairs.ToArray();
     }
 
@@ -68,9 +70,8 @@ public static class SetsAndMaps
                 degrees.Add(degreeName, 0);
             }
             degrees[degreeName] += 1;
-            // TODO Problem 2 - ADD YOUR CODE HERE
         }
-
+        
         return degrees;
     }
 
@@ -92,8 +93,43 @@ public static class SetsAndMaps
     /// </summary>
     public static bool IsAnagram(string word1, string word2)
     {
-        // TODO Problem 3 - ADD YOUR CODE HERE
-        return false;
+        Dictionary<char, int> letters1 = new Dictionary<char, int>();
+        Dictionary<char, int> letters2 = new Dictionary<char, int>();
+        word1 = word1.Replace(" ", "").ToLower();
+        word2 = word2.Replace(" ", "").ToLower();
+        
+        foreach (char letter in word1)
+        {
+            if (!letters1.ContainsKey(letter))
+            {
+                letters1.Add(letter, 0);
+            }
+            letters1[letter] += 1;
+        }
+
+        foreach (char letter in word2)
+        {
+            if (!letters2.ContainsKey(letter))
+            {
+                letters2.Add(letter, 0);
+            }
+            letters2[letter] += 1;
+        }
+
+        if (letters1.Count != letters2.Count)
+        {
+            return false;
+        }
+
+        foreach (var pair in letters1)
+        {
+            char key = pair.Key;
+            if (!letters2.ContainsKey(key) || pair.Value != letters2[key])
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     /// <summary>
