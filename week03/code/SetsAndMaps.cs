@@ -62,6 +62,12 @@ public static class SetsAndMaps
         foreach (var line in File.ReadLines(filename))
         {
             var fields = line.Split(",");
+            var degreeName = fields[3];
+            if (!degrees.ContainsKey(degreeName))
+            {
+                degrees.Add(degreeName, 0);
+            }
+            degrees[degreeName] += 1;
             // TODO Problem 2 - ADD YOUR CODE HERE
         }
 
