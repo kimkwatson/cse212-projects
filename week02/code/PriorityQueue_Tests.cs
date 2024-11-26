@@ -6,37 +6,16 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 public class PriorityQueueTests
 {
     [TestMethod]
-    // Scenario: Create a queue with the following to-do items and priorities: homework(3), shower(2), scriptures(4), emails(1) and run until the queue is empty.
-    // Expected Result: scriptures, homework, shower, emails
+    // Scenario: Create a queue with the following item and priority: item(1)
+    // Expected Result: item(1)
     // Defect(s) Found: 
     public void TestPriorityQueue_1()
     {
-        var homework = new PriorityItem("homework", 3);
-        var shower = new PriorityItem("shower", 2);
-        var scriptures = new PriorityItem("scriptures", 4);
-        var emails = new PriorityItem("emails", 1);
-        
-        PriorityItem[] expectedResult = [scriptures, homework, shower, emails];
-        
-        var priorityQueue = new PriorityQueue();
-        priorityQueue.Enqueue(homework.Value, homework.Priority);
-        priorityQueue.Enqueue(shower.Value, shower.Priority);
-        priorityQueue.Enqueue(scriptures.Value, scriptures.Priority);
-        priorityQueue.Enqueue(emails.Value, emails.Priority);
-
-        int i = 0;
-        while (priorityQueue.Count > 0)
-        {
-            if (i >= expectedResult.Length)
-            {
-                Assert.Fail("Queue should have run out of items by now.");
-            }
-
-            var item = priorityQueue.Dequeue();
-            Assert.AreEqual(expectedResult[i].Value, item.Value);
-            i++;
-        }
-        Assert.Fail("Implement the test case and then remove this.");
+        var testItems = new PriorityQueue();
+        var test = new PriorityItem("item", 1);
+        testItems.Enqueue(test.Value, test.Priority);
+        var testOutput = testItems.Dequeue();
+        Assert.IsInstanceOfType(testOutput, typeof(PriorityItem), "The enqueued item must be a PriorityItem.");
     }
 
     [TestMethod]
@@ -46,7 +25,32 @@ public class PriorityQueueTests
     public void TestPriorityQueue_2()
     {
         var priorityQueue = new PriorityQueue();
-        Assert.Fail("Implement the test case and then remove this.");
+        var homework = new PriorityItem("homework", 3);
+        var shower = new PriorityItem("shower", 2);
+        var scriptures = new PriorityItem("scriptures", 4);
+        var emails = new PriorityItem("emails", 1);
+        
+        PriorityItem[] expectedResult = { scriptures, homework, shower, emails };
+        
+        var todoList = new PriorityQueue();
+        todoList.Enqueue(homework.Value, homework.Priority);
+        todoList.Enqueue(shower.Value, shower.Priority);
+        todoList.Enqueue(scriptures.Value, scriptures.Priority);
+        todoList.Enqueue(emails.Value, emails.Priority);
+
+        int i = 0;
+        while (todoList.Count > 0)
+        {
+            if (i >= expectedResult.Length)
+            {
+                Assert.Fail("Queue should have run out of items by now.");
+            }
+
+           var item = todoList.Dequeue();
+            Assert.AreEqual(expectedResult[i].Value, item.Value);
+            i++;
+        }
+    }
     }
 
     // Add more test cases as needed below.
