@@ -1,3 +1,6 @@
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
+
 /// <summary>
 /// Defines a maze using a dictionary. The dictionary is provided by the
 /// user when the Maze object is created. The dictionary will contain the
@@ -32,7 +35,15 @@ public class Maze
     /// </summary>
     public void MoveLeft()
     {
-        // FILL IN CODE
+        bool _left = _mazeMap[(_currX, _currY)][0];
+        if (_left == true && (_currX - 1) != 0)
+        {
+            _currX = _currX - 1;
+        }
+        else
+        {
+            throw new InvalidOperationException($"Can't go that way!");
+        }
     }
 
     /// <summary>
@@ -41,7 +52,15 @@ public class Maze
     /// </summary>
     public void MoveRight()
     {
-        // FILL IN CODE
+        bool _right = _mazeMap[(_currX, _currY)][1];
+        if (_right == true && (_currX + 1) != 7)
+        {
+            _currX = _currX + 1;
+        }
+        else
+        {
+            throw new InvalidOperationException($"Can't go that way!");
+        }
     }
 
     /// <summary>
@@ -50,7 +69,15 @@ public class Maze
     /// </summary>
     public void MoveUp()
     {
-        // FILL IN CODE
+        bool _up = _mazeMap[(_currX, _currY)][2];
+        if (_up == true && (_currY - 1) != 0)
+        {
+            _currY = _currY - 1;
+        }
+        else
+        {
+            throw new InvalidOperationException($"Can't go that way!");
+        }
     }
 
     /// <summary>
@@ -59,7 +86,15 @@ public class Maze
     /// </summary>
     public void MoveDown()
     {
-        // FILL IN CODE
+        bool _down = _mazeMap[(_currX, _currY)][3];
+        if (_down == true && (_currY + 1) != 7)
+        {
+            _currY = _currY + 1;
+        }
+        else
+        {
+            throw new InvalidOperationException($"Can't go that way!");
+        }
     }
 
     public string GetStatus()
