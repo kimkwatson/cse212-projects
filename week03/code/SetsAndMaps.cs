@@ -175,10 +175,6 @@ public static class SetsAndMaps
         }
 
         string[] quakesArray = quakesList.ToArray();
-        foreach (var item in quakesArray)
-        {
-            Console.WriteLine(item);
-        }
         return quakesArray;
     }
 }
