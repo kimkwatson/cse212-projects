@@ -210,6 +210,7 @@ public class ReverseTests
         var ll = new LinkedList();
         Assert.AreEqual("<IEnumerable>{}", ll.Reverse().AsString());
     }
+    
 
     [TestMethod]
     public void Reverse_Single()
