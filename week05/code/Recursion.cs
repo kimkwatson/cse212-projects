@@ -119,10 +119,14 @@ public static class Recursion
 
         // TODO Start Problem 3
         if (remember == null)
+        {
             remember = new Dictionary<int, decimal>();
+        }
 
         if (remember.ContainsKey(s))
+        {
             return remember[s];
+        }
 
         // Solve using recursion
         decimal ways = CountWaysToClimb(s - 1, remember) + CountWaysToClimb(s - 2, remember) + CountWaysToClimb(s - 3, remember);
@@ -147,6 +151,18 @@ public static class Recursion
     public static void WildcardBinary(string pattern, List<string> results)
     {
         // TODO Start Problem 4
+        int index = pattern.IndexOf('*');
+        if (index == -1)
+        {
+            results.Add(pattern);
+        }
+        else
+        {
+            string pattern0 = pattern.Substring(0, index) + "0" + pattern.Substring(index + 1);
+            string pattern1 = pattern.Substring(0, index) + "1" + pattern.Substring(index + 1);
+            WildcardBinary(pattern0, results);
+            WildcardBinary(pattern1, results);
+        }
     }
 
     /// <summary>
