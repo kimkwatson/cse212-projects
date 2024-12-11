@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Diagnostics.CodeAnalysis;
+using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 
 public static class Recursion
 {
@@ -173,15 +174,44 @@ public static class Recursion
     {
         // If this is the first time running the function, then we need
         // to initialize the currPath list.
-        if (currPath == null) {
+        if (currPath == null)
+        {
             currPath = new List<ValueTuple<int, int>>();
         }
         
         // currPath.Add((1,2)); // Use this syntax to add to the current path
+        currPath.Add((x, y));
 
         // TODO Start Problem 5
         // ADD CODE HERE
+        if (maze.IsEnd(x, y))
+        {
+            results.Add(currPath.AsString());
+        }   
+        else
+        {
+            var moves = new (int dx, int dy)[]
+            {
+                (0, -1), // Up
+                (0, 1), // Down
+                (-1, 0), // Left
+                (1, 0) // Right
+            };
 
+            foreach (var (dx, dy) in moves)
+            {
+                int newX = x + dx;
+                int newY = y + dy;
+            
+                if (maze.IsValidMove(currPath, newX, newY))
+                {
+                    SolveMaze(results, maze, newX, newY, new List<(int, int)>(currPath));
+                }
+            }
+        }
+        
+        currPath.RemoveAt(currPath.Count - 1);
+        
         // results.Add(currPath.AsString()); // Use this to add your path to the results array keeping track of complete maze solutions when you find the solution.
     }
 }
